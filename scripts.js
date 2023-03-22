@@ -84,6 +84,7 @@ const gameController = (() => {
         cellIndex = cellIndex.charAt(cellIndex.length - 1);
         gameBoard.boardCells[cellIndex].status = activePlayer.getMarker();
         gameBoard.render();
+        checkEnd();
         togglePlayer();
         updateInstructions();
     };
@@ -91,6 +92,34 @@ const gameController = (() => {
     const updateInstructions = () => {
         let instructions = document.getElementById('instructions');
         instructions.textContent = `It's ` + activePlayer.getName() + `'s turn (` + activePlayer.getMarker() + `)`;
+    };
+
+    function checkEnd() {
+        const topRowX = ((gameBoard.boardCells[0].status === gameBoard.boardCells[1].status) && (gameBoard.boardCells[0].status === gameBoard.boardCells[2].status) && (gameBoard.boardCells[0].status === 'X'));
+        const midRowX = ((gameBoard.boardCells[3].status === gameBoard.boardCells[4].status) && (gameBoard.boardCells[3].status === gameBoard.boardCells[5].status) && (gameBoard.boardCells[3].status === 'X'));
+        const botRowX = ((gameBoard.boardCells[6].status === gameBoard.boardCells[7].status) && (gameBoard.boardCells[6].status === gameBoard.boardCells[8].status) && (gameBoard.boardCells[6].status === 'X'));
+        const leftColX = ((gameBoard.boardCells[0].status === gameBoard.boardCells[3].status) && (gameBoard.boardCells[0].status === gameBoard.boardCells[6].status) && (gameBoard.boardCells[0].status === 'X'));
+        const midColX = ((gameBoard.boardCells[1].status === gameBoard.boardCells[4].status) && (gameBoard.boardCells[1].status === gameBoard.boardCells[7].status) && (gameBoard.boardCells[1].status === 'X'));
+        const rightColX = ((gameBoard.boardCells[2].status === gameBoard.boardCells[5].status) && (gameBoard.boardCells[2].status === gameBoard.boardCells[8].status) && (gameBoard.boardCells[2].status === 'X'));
+        const leftDiagX = ((gameBoard.boardCells[0].status === gameBoard.boardCells[4].status) && (gameBoard.boardCells[0].status === gameBoard.boardCells[8].status) && (gameBoard.boardCells[0].status === 'X'));
+        const rightDiagX = ((gameBoard.boardCells[2].status === gameBoard.boardCells[4].status) && (gameBoard.boardCells[2].status === gameBoard.boardCells[6].status) && (gameBoard.boardCells[2].status === 'X'));
+
+        const topRowO = ((gameBoard.boardCells[0].status === gameBoard.boardCells[1].status) && (gameBoard.boardCells[0].status === gameBoard.boardCells[2].status) && (gameBoard.boardCells[0].status === 'O'));
+        const midRowO = ((gameBoard.boardCells[3].status === gameBoard.boardCells[4].status) && (gameBoard.boardCells[3].status === gameBoard.boardCells[5].status) && (gameBoard.boardCells[3].status === 'O'));
+        const botRowO = ((gameBoard.boardCells[6].status === gameBoard.boardCells[7].status) && (gameBoard.boardCells[6].status === gameBoard.boardCells[8].status) && (gameBoard.boardCells[6].status === 'O'));
+        const leftColO = ((gameBoard.boardCells[0].status === gameBoard.boardCells[3].status) && (gameBoard.boardCells[0].status === gameBoard.boardCells[6].status) && (gameBoard.boardCells[0].status === 'O'));
+        const midColO = ((gameBoard.boardCells[1].status === gameBoard.boardCells[4].status) && (gameBoard.boardCells[1].status === gameBoard.boardCells[7].status) && (gameBoard.boardCells[1].status === 'O'));
+        const rightColO = ((gameBoard.boardCells[2].status === gameBoard.boardCells[5].status) && (gameBoard.boardCells[2].status === gameBoard.boardCells[8].status) && (gameBoard.boardCells[2].status === 'O'));
+        const leftDiagO = ((gameBoard.boardCells[0].status === gameBoard.boardCells[4].status) && (gameBoard.boardCells[0].status === gameBoard.boardCells[8].status) && (gameBoard.boardCells[0].status === 'O'));
+        const rightDiagO = ((gameBoard.boardCells[2].status === gameBoard.boardCells[4].status) && (gameBoard.boardCells[2].status === gameBoard.boardCells[6].status) && (gameBoard.boardCells[2].status === 'O'));
+
+        if (topRowX || midRowX || botRowX || leftColX || midColX || rightColX || leftDiagX || rightDiagX) {
+            console.log('Player X has won');
+        } else if (topRowO || midRowO || botRowO || leftColO || midColO || rightColO || leftDiagO || rightDiagO) {
+            console.log('Player O has won');
+        } else if (!gameBoard.boardCells.find(cell => cell.status === 'blank')) {
+            console.log('tie');
+        }
     };
 
     return {handleCellClick};
