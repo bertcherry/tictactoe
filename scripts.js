@@ -10,9 +10,9 @@ const gameBoard = (() => {
         });
         // disable click when status is filled
         if (cell.dataset.status === 'blank') {
-            cell.addEventListener('click', handleCellClick);
+            //cell.addEventListener('click', handleCellClick);
         } else {
-            cell.removeEventListener('click', handleCellClick);
+            //cell.removeEventListener('click', handleCellClick);
         };
     };
 })();
@@ -29,3 +29,10 @@ const playerX = player(document.getElementById('x-name').value, 'x');
 const playerO = player(document.getElementById('o-name').value, 'o');
 
 //Object to control the flow of the game - use module
+const startButton = document.querySelector('.submit-btn');
+startButton.addEventListener('click', startGame);
+
+function startGame(e) {
+    e.preventDefault();
+    document.getElementById('form-container').style.display = 'none';
+}
