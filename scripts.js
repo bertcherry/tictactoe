@@ -24,10 +24,6 @@ const player = (name, marker) => {
     return {getName, getMarker};
 };
 
-//Two inputs for player name, one already assigned to X and one to O
-const playerX = player(document.getElementById('x-name').value, 'x');
-const playerO = player(document.getElementById('o-name').value, 'o');
-
 //Object to control the flow of the game - use module
 const startButton = document.querySelector('.submit-btn');
 startButton.addEventListener('click', startGame);
@@ -36,3 +32,28 @@ function startGame(e) {
     e.preventDefault();
     document.getElementById('form-container').style.display = 'none';
 }
+
+const gameController = (() => {
+    const startButton = document.querySelector('.submit-btn');
+    startButton.addEventListener('click', startGame);
+
+    const startGame = (e) => {
+        e.preventDefault();
+        document.getElementById('form-container').style.display = 'none';
+        //Two inputs for player name, one already assigned to X and one to O
+        const playerX = player(document.getElementById('x-name').value, 'x');
+        const playerO = player(document.getElementById('o-name').value, 'o');
+
+        //Pick a random number to choose which player goes first
+        let randomStart = Math.floor(Math.random() * 2);
+        let playerOne;
+        let playerTwo;
+        if (randomStart == 0) {
+            playerOne = playerX;
+            playerTwo = playerO;
+        } else {
+            playerOne = playerO;
+            playerTwo = playerX;
+        }
+    };
+})
