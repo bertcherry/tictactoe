@@ -19,9 +19,29 @@ min-max to optimize for mobile to desktop */
 .game-board {
     display: grid;
     grid-template: repeat(3, minmax(25vmin, 200px)) / repeat(3, minmax(25vmin, 200px));
-    justify-items: center;
+}
+
+.game-cell {
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
+
+.game-cell:nth-child(3n - 2) {
+    border-right: 3px solid var(--dark);
+}
+
+.game-cell:nth-child(3n) {
+    border-left: 3px solid var(--dark);
+}
+
+.game-cell:nth-child(4),
+.game-cell:nth-child(5),
+.game-cell:nth-child(6) {
+    border-top: 3px solid var(--dark);
+    border-bottom: 3px solid var(--dark);
+}
+
 
 /* Form styling for player name input */
 #form-container {
