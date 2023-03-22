@@ -5,6 +5,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 :root {
     /* Dark or black on light, black on accent and reverse meet contrast grade AAA */
