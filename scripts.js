@@ -112,13 +112,19 @@ const gameController = (() => {
         const rightColO = ((gameBoard.boardCells[2].status === gameBoard.boardCells[5].status) && (gameBoard.boardCells[2].status === gameBoard.boardCells[8].status) && (gameBoard.boardCells[2].status === 'O'));
         const leftDiagO = ((gameBoard.boardCells[0].status === gameBoard.boardCells[4].status) && (gameBoard.boardCells[0].status === gameBoard.boardCells[8].status) && (gameBoard.boardCells[0].status === 'O'));
         const rightDiagO = ((gameBoard.boardCells[2].status === gameBoard.boardCells[4].status) && (gameBoard.boardCells[2].status === gameBoard.boardCells[6].status) && (gameBoard.boardCells[2].status === 'O'));
+        
+        const resultInfo = document.querySelector('.result-info');
 
         if (topRowX || midRowX || botRowX || leftColX || midColX || rightColX || leftDiagX || rightDiagX) {
-            console.log('Player X has won');
+            console.log('player X won');
+            document.getElementById('result-container').style.display = 'flex';
+            resultInfo.textContent = 'Player X has won';
         } else if (topRowO || midRowO || botRowO || leftColO || midColO || rightColO || leftDiagO || rightDiagO) {
-            console.log('Player O has won');
+            document.getElementById('result-container').style.display = 'flex';
+            resultInfo.textContent = 'Player O has won';
         } else if (!gameBoard.boardCells.find(cell => cell.status === 'blank')) {
-            console.log('tie');
+            document.getElementById('result-container').style.display = 'flex';
+            resultInfo.textContent = 'It\'s a tie!';
         }
     };
 

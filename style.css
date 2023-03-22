@@ -48,6 +48,15 @@ min-max to optimize for mobile to desktop */
 #form-container {
     /* Visibility toggles on submit */
     display: absolute;
+}
+
+/* Modal to display results */
+#result-container {
+    display: none;
+}
+
+/* General styling for both modals */
+.modal {
     position: fixed;
     top: 0;
     right: 0;
@@ -57,7 +66,8 @@ min-max to optimize for mobile to desktop */
     background-color: rgba(0,0,0,.5);
 }
 
-form {
+form,
+.result-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-around;

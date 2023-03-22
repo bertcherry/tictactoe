@@ -9,7 +9,7 @@
 </head>
 <body>
     <!--Form for player name input-->
-    <div id="form-container">
+    <div id="form-container" class="modal">
         <form action="post">
             <div class="input-wrapper">
                 <label for="x-name">Player X Name:</label>
@@ -39,6 +39,16 @@
         <div class="game-cell" id="cell6" data-status="blank"></div>
         <div class="game-cell" id="cell7" data-status="blank"></div>
         <div class="game-cell" id="cell8" data-status="blank"></div>
+    </div>
+
+    <!--Modal to alert game result-->
+    <div id="result-container" class="modal">
+        <div class="result-wrapper">
+            <div class="result-info"></div>
+            <div class="btn-wrapper">
+                <button id="reset-btn">Play Again</button>
+            </div>
+        </div>
     </div>
 </body>
 <script src="scripts.js"></script>
