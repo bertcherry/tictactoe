@@ -41,6 +41,7 @@ const gameController = (() => {
         e.preventDefault();
         document.getElementById('form-container').style.display = 'none';
         playerSet();
+        updateInstructions();
     };
 
     //Object for players - use factory
@@ -52,8 +53,8 @@ const gameController = (() => {
 
     const playerSet = () => {
         //Two inputs for player name, one already assigned to X and one to O
-        playerX = player(document.getElementById('x-name').value, 'x');
-        playerO = player(document.getElementById('o-name').value, 'o');
+        playerX = player(document.getElementById('x-name').value, 'X');
+        playerO = player(document.getElementById('o-name').value, 'O');
 
         //Pick a random number to choose which player goes first
         let randomStart = Math.floor(Math.random() * 2);
@@ -61,18 +62,18 @@ const gameController = (() => {
             activePlayer = playerX;
         } else {
             activePlayer = playerO;
-        };
+        }
         return playerX, playerO;
     };
 
-    const togglePlayer = activePlayer => {
-        if (activePlayer.getMarker() === 'x') {
-            activePlayer.marker = playerSet(playerO.getMarker());
-            activePlayer.name = playerSet(playerO.getName());
-        } else if (activePlayer.getMarker() === 'o') {
-            activePlayer.marker = playerSet(playerX.getMarker());
-            activePlayer.name = playerSet(playerX.getName());
-        };
+    const togglePlayer = () => {
+        if (activePlayer.getMarker() === 'X') {
+            activePlayer = player(playerO.getName(), playerO.getMarker());
+        } else if (activePlayer.getMarker() === 'O') {
+            activePlayer = player(playerX.getName(), playerX.getMarker());
+        } else {
+            console.log('uh oh');
+        }
         return activePlayer;
     };
 
@@ -83,7 +84,13 @@ const gameController = (() => {
         cellIndex = cellIndex.charAt(cellIndex.length - 1);
         gameBoard.boardCells[cellIndex].status = activePlayer.getMarker();
         gameBoard.render();
-        togglePlayer(activePlayer);
+        togglePlayer();
+        updateInstructions();
+    };
+
+    const updateInstructions = () => {
+        let instructions = document.getElementById('instructions');
+        instructions.textContent = `It's ` + activePlayer.getName() + `'s turn (` + activePlayer.getMarker() + `)`;
     };
 
     return {handleCellClick};
