@@ -1,0 +1,10 @@
+:root {
+    /* Dark or black on light, black on accent and reverse meet contrast grade AAA */
+    --light: #f6f1f1;
+    --accent: #19a7ce;
+    --dark: #11516e;
+    --black: #000000;
+}
+
+/* Use CSS Grid to arrange the game board
+min-max to optimize for mobile to desktop */
