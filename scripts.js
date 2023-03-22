@@ -8,6 +8,7 @@ const gameBoard = (() => {
             id: `cell${i}`,
             status: cell.dataset.status,
         });
+        // disable click when status is filled
         if (cell.dataset.status === 'blank') {
             cell.addEventListener('click', handleCellClick);
         } else {
@@ -17,5 +18,14 @@ const gameBoard = (() => {
 })();
 
 //Object for players - use factory
+const player = (name, marker) => {
+    const getName = () => name;
+    const getMarker = () => marker;
+    return {getName, getMarker};
+};
+
+//Two inputs for player name, one already assigned to X and one to O
+const playerX = player(document.getElementById('x-name').value, 'x');
+const playerO = player(document.getElementById('o-name').value, 'o');
 
 //Object to control the flow of the game - use module

@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!--Form for player name input-->
+    <div id="form-container">
+        <form action="post">
+            <div class="input-wrapper">
+                <label for="x-name">Player X Name:</label>
+                <input type="text" name="x-name" id="x-name">
+            </div>
+            <div class="input-wrapper">
+                <label for="o-name">Player O Name:</label>
+                <input type="text" name="o-name" id="o-name">
+            </div>
+            <div class="btn-wrapper">
+                <button type="submit" class="submit-btn">Let's Play!</button>
+            </div>
+        </form>
+    </div>
+
     <!--Set up gameboard using divs that will be aligned by CSS Grid-->
     <div class="game-board">
         <div class="game-cell" id="cell0" data-status="blank"></div>
