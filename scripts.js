@@ -25,14 +25,6 @@ const player = (name, marker) => {
 };
 
 //Object to control the flow of the game - use module
-const startButton = document.querySelector('.submit-btn');
-startButton.addEventListener('click', startGame);
-
-function startGame(e) {
-    e.preventDefault();
-    document.getElementById('form-container').style.display = 'none';
-}
-
 const gameController = (() => {
     const startButton = document.querySelector('.submit-btn');
     startButton.addEventListener('click', startGame);
