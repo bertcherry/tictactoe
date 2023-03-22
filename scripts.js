@@ -116,12 +116,11 @@ const gameController = (() => {
         const resultInfo = document.querySelector('.result-info');
 
         if (topRowX || midRowX || botRowX || leftColX || midColX || rightColX || leftDiagX || rightDiagX) {
-            console.log('player X won');
             document.getElementById('result-container').style.display = 'flex';
-            resultInfo.textContent = 'Player X has won';
+            resultInfo.textContent = playerX.getName() + ' won the game!';
         } else if (topRowO || midRowO || botRowO || leftColO || midColO || rightColO || leftDiagO || rightDiagO) {
             document.getElementById('result-container').style.display = 'flex';
-            resultInfo.textContent = 'Player O has won';
+            resultInfo.textContent = playerO.getName() + ' won the game!';
         } else if (!gameBoard.boardCells.find(cell => cell.status === 'blank')) {
             document.getElementById('result-container').style.display = 'flex';
             resultInfo.textContent = 'It\'s a tie!';
