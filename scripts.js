@@ -7,7 +7,7 @@ const gameBoard = (() => {
             const cell = document.getElementById(`cell${i}`);
             boardCells.push({
                 id: `cell${i}`,
-                status: cell.dataset.status,
+                status: 'blank',
             });
         };
     };
@@ -27,17 +27,17 @@ const gameBoard = (() => {
 
     // reset with play again button
     const reset = () => {
-        //clear all the divs -- changing the marker to images, will remove children
+        //clear all the divs
         for (cell of boardCells) {
             let cellDiv = document.getElementById(`${cell.id}`);
-            //cellDiv.nodeValue = '';
-        }
+            cellDiv.textContent = '';
+        };
         //clear the boardcells array
         boardCells.splice(0, boardCells.length);
         setup();
         render();
         document.getElementById('result-container').style.display = 'none';
-    }
+    };
 
     return {setup, render, reset, boardCells}
 })();
