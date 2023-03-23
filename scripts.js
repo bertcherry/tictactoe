@@ -25,7 +25,21 @@ const gameBoard = (() => {
         };
     };
 
-    return {setup, render, boardCells}
+    // reset with play again button
+    const reset = () => {
+        //clear all the divs -- changing the marker to images, will remove children
+        for (cell of boardCells) {
+            let cellDiv = document.getElementById(`${cell.id}`);
+            //cellDiv.nodeValue = '';
+        }
+        //clear the boardcells array
+        boardCells.splice(0, boardCells.length);
+        setup();
+        render();
+        document.getElementById('result-container').style.display = 'none';
+    }
+
+    return {setup, render, reset, boardCells}
 })();
 
 //Object to control the flow of the game - use module
@@ -118,12 +132,18 @@ const gameController = (() => {
         if (topRowX || midRowX || botRowX || leftColX || midColX || rightColX || leftDiagX || rightDiagX) {
             document.getElementById('result-container').style.display = 'flex';
             resultInfo.textContent = playerX.getName() + ' won the game!';
+            const resetButton = document.getElementById('reset-btn');
+            resetButton.addEventListener('click', gameBoard.reset);
         } else if (topRowO || midRowO || botRowO || leftColO || midColO || rightColO || leftDiagO || rightDiagO) {
             document.getElementById('result-container').style.display = 'flex';
             resultInfo.textContent = playerO.getName() + ' won the game!';
+            const resetButton = document.getElementById('reset-btn');
+            resetButton.addEventListener('click', gameBoard.reset);
         } else if (!gameBoard.boardCells.find(cell => cell.status === 'blank')) {
             document.getElementById('result-container').style.display = 'flex';
             resultInfo.textContent = 'It\'s a tie!';
+            const resetButton = document.getElementById('reset-btn');
+            resetButton.addEventListener('click', gameBoard.reset);
         }
     };
 
