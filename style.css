@@ -21,7 +21,7 @@ body {
 min-max to optimize for mobile to desktop */
 .game-board {
     display: grid;
-    grid-template: repeat(3, minmax(25vmin, 200px)) / repeat(3, minmax(25vmin, 200px));
+    grid-template: repeat(3, minmax(25vmin, 1fr)) / repeat(3, minmax(25vmin, 1fr));
 }
 
 .game-cell {
